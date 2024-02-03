@@ -14,7 +14,7 @@ export async function Navbar() {
   const user = new AuthService().getUser();
   return (
     <AppBar position="fixed">
-      <Toolbar sx={{ backgroundColor: "background.paper" }}> 
+      <Toolbar sx={{ backgroundColor: "background.paper" }}>
         <Image
           src="/logo.png"
           width={147.66}
