@@ -27,7 +27,9 @@ export class CartService {
       this.cookieStore.set("cart", JSON.stringify({ items: [], total: 0 }));
     }
 
-    const cart: Cart = cartString ? JSON.parse(cartString) : { items: [], total: 0 };
+    const cart: Cart = cartString
+      ? JSON.parse(cartString)
+      : { items: [], total: 0 };
 
     const { product_id, quantity } = input;
 
@@ -48,9 +50,10 @@ export class CartService {
   removeItemFromCart(index: number) {
     const cartRaw = this.cookieStore.get("cart")?.value;
 
-    const cart: Cart = cartRaw ? JSON.parse(cartRaw) : { items: [] };
+    const cart: Cart = cartRaw ? JSON.parse(cartRaw) : { items: [], total: 0 };
 
     cart.items.splice(index, 1);
+    cart.total = cart.items.reduce((total, item) => total + item.total, 0);
 
     this.cookieStore.set("cart", JSON.stringify(cart));
   }
