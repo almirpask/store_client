@@ -8,9 +8,9 @@ export async function middleware(request: NextRequest) {
   if (authService.isTokenExpired() || !user) {
     const { pathname } = new URL(request.url);
 
-    // return NextResponse.redirect(
-    //   new URL(`/login?redirect_to=${pathname}`, request.url)
-    // );
+    return NextResponse.redirect(
+      new URL(`/login?redirect_to=${pathname}`, request.url)
+    );
   }
 }
 
