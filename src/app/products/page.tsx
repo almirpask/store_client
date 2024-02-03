@@ -11,13 +11,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Link from "next/link";
 import Image from "next/legacy/image";
 import { ProductService } from "../../services/product.service";
-
 async function ListProductsPage({
   searchParams,
 }: {
   searchParams: { search?: string; category_id?: string };
 }) {
-  const products = await new ProductService().getProducts({
+  const products = await new ProductService().getCachedProducts({
     search: searchParams.search,
     category_id: searchParams.category_id,
   });
